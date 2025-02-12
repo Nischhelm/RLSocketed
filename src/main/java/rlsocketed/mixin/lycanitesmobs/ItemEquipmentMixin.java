@@ -65,11 +65,10 @@ public class ItemEquipmentMixin {
         if(stackTags == null) return partStackList;
         NBTTagList indexList = stackTags.getTagList("SocketPartIndices",3);
 
-        //There should never be more stored socket indices than actual sockets, otherwise someone removed sockets from the tool somehow
-        if(indexList.tagCount() > equipSockets.getSocketCount()) return partStackList;
-
         //Adding the sockets where they belong
-        for(int i = 0; i < indexList.tagCount(); i++){
+        //There should never be more stored socket indices than actual sockets, otherwise someone removed sockets from the tool somehow
+        //if there are, we just ignore the remaining entries in the index list
+        for(int i = 0; i < Math.min(indexList.tagCount(), equipSockets.getSocketCount()); i++){
             int partIndex = indexList.getIntAt(i);
             ICapabilitySocketable partSockets = partStackList.get(partIndex).getCapability(CapabilitySocketableHandler.CAP_SOCKETABLE, null);
             if(partSockets == null) continue;
