@@ -36,7 +36,7 @@ public class RLSocketed {
             DefaultJsonAddons.initializeBuiltinEntries();
         }
         if(Loader.isModLoaded("lycanitesmobs")) {
-            SocketedUtil.registerForcedItemType("LYCANITETOOLPART", item -> item instanceof ItemEquipmentPart, 1);
+            SocketedUtil.registerForcedItemType("LYCANITETOOLPART", item -> item instanceof ItemEquipmentPart, 0); //Sockets rolls handled in BaseCreatureEntityMixin
             SocketedUtil.registerForcedItemType("LYCANITETOOL", item -> item instanceof ItemEquipment, 0);
         }
     }
