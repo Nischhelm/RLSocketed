@@ -1,19 +1,22 @@
 package rlsocketed;
 
+import com.lycanitesmobs.core.item.equipment.ItemEquipment;
+import com.lycanitesmobs.core.item.equipment.ItemEquipmentPart;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rlsocketed.config.DefaultJsonAddons;
-import rlsocketed.customactivators.DodgeAOEActivator;
-import rlsocketed.customactivators.DodgeActivator;
+import rlsocketed.activator.DodgeAOEActivator;
+import rlsocketed.activator.DodgeActivator;
 import socketed.common.util.SocketedUtil;
 
 @Mod(
         modid = RLSocketed.MODID,
         name = RLSocketed.MODNAME,
-        version = RLSocketed.VERSION
+        version = RLSocketed.VERSION,
+        dependencies = "required-after:socketed"
 )
 public class RLSocketed {
 
@@ -31,6 +34,10 @@ public class RLSocketed {
             SocketedUtil.registerActivator(DodgeActivator.TYPE_NAME, DodgeActivator.class, RLSocketed.MODID);
             SocketedUtil.registerActivator(DodgeAOEActivator.TYPE_NAME, DodgeAOEActivator.class, RLSocketed.MODID);
             DefaultJsonAddons.initializeBuiltinEntries();
+        }
+        if(Loader.isModLoaded("lycanitesmobs")) {
+            SocketedUtil.registerForcedItemType("LYCANITETOOLPART", item -> item instanceof ItemEquipmentPart, 1);
+            SocketedUtil.registerForcedItemType("LYCANITETOOL", item -> item instanceof ItemEquipment, 0);
         }
     }
 }

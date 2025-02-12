@@ -1,4 +1,4 @@
-package rlsocketed.customactivators;
+package rlsocketed.activator;
 
 import com.elenai.elenaidodge.api.DodgeEvent;
 import net.minecraft.client.resources.I18n;

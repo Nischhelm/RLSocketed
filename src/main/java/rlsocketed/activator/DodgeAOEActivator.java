@@ -1,4 +1,4 @@
-package rlsocketed.customactivators;
+package rlsocketed.activator;
 
 import com.google.gson.annotations.SerializedName;
 import net.minecraft.client.resources.I18n;

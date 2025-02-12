@@ -11,6 +11,7 @@ public class RLSocketedPlugin implements IFMLLoadingPlugin {
 
     public RLSocketedPlugin() {
         MixinBootstrap.init();
+        FermiumRegistryAPI.enqueueMixin(true, "mixins.rlsocketed.lycanitesmobs.json");
     }
 
     @Override

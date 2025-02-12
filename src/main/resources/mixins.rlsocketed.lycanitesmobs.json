@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "rlsocketed.mixin.lycanitesmobs",
+  "refmap": "mixins.rlsocketed.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "mixins": [
+    "ItemEquipmentMixin"
+  ],
+  "injectors": {
+    "maxShiftBy": 10
+  }
+}
