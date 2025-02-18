@@ -1,0 +1,4 @@
+- Effect getTypeName could get defaulted
+- Activator attemptActivation could get defaulted with various activators to extend from
+        like a directActivationActivator
+        or a GenericActivator just checking testCondition

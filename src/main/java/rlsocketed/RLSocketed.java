@@ -8,8 +8,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rlsocketed.config.DefaultJsonAddons;
-import rlsocketed.activator.DodgeAOEActivator;
 import rlsocketed.activator.DodgeActivator;
+import rlsocketed.gemeffects.DodgeForceEffect;
 import socketed.common.util.SocketedUtil;
 
 @Mod(
@@ -32,7 +32,7 @@ public class RLSocketed {
     public static void init(FMLInitializationEvent event) {
         if(Loader.isModLoaded("elenaidodge")) {
             SocketedUtil.registerActivator(DodgeActivator.TYPE_NAME, DodgeActivator.class, RLSocketed.MODID);
-            SocketedUtil.registerActivator(DodgeAOEActivator.TYPE_NAME, DodgeAOEActivator.class, RLSocketed.MODID);
+            SocketedUtil.registerEffectType(DodgeForceEffect.TYPE_NAME, DodgeForceEffect.class, RLSocketed.MODID);
             DefaultJsonAddons.initializeBuiltinEntries();
         }
         if(Loader.isModLoaded("lycanitesmobs")) {
