@@ -8,12 +8,12 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rlsocketed.callback.GenericEventCallback;
 import socketed.common.capabilities.effectscache.CapabilityEffectsCacheHandler;
 import socketed.common.capabilities.effectscache.ICapabilityEffectsCache;
 import socketed.common.socket.gem.effect.GenericGemEffect;
 import socketed.common.socket.gem.effect.activatable.ActivatableGemEffect;
 import socketed.common.socket.gem.effect.activatable.activator.GenericActivator;
+import socketed.common.socket.gem.effect.activatable.callback.GenericEventCallback;
 import socketed.common.socket.gem.effect.activatable.callback.IEffectCallback;
 import socketed.common.socket.gem.effect.activatable.condition.GenericCondition;
 
@@ -68,7 +68,7 @@ public class DodgeActivator extends GenericActivator {
                     ActivatableGemEffect activatableGemEffect = (ActivatableGemEffect)effect;
                     if(activatableGemEffect.getActivator() instanceof DodgeActivator) {
                         DodgeActivator activator = (DodgeActivator)activatableGemEffect.getActivator();
-                        GenericEventCallback callable = new GenericEventCallback(event);
+                        GenericEventCallback<DodgeEvent.ServerDodgeEvent> callable = new GenericEventCallback<>(event);
                         activator.attemptDodgeActivation(activatableGemEffect, callable, player);
                     }
                 }

@@ -4,10 +4,10 @@ import com.elenai.elenaidodge.api.DodgeEvent;
 import com.google.gson.annotations.SerializedName;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import rlsocketed.callback.GenericEventCallback;
 import socketed.Socketed;
 import socketed.common.socket.gem.effect.activatable.ActivatableGemEffect;
 import socketed.common.socket.gem.effect.activatable.activator.GenericActivator;
+import socketed.common.socket.gem.effect.activatable.callback.GenericEventCallback;
 import socketed.common.socket.gem.effect.activatable.callback.IEffectCallback;
 import socketed.common.socket.gem.effect.activatable.target.GenericTarget;
 import socketed.common.socket.gem.effect.slot.ISlotType;
@@ -28,9 +28,8 @@ public class DodgeForceEffect extends ActivatableGemEffect {
     @Override
     public void performEffect(@Nullable IEffectCallback callback, EntityPlayer playerSource, EntityLivingBase effectTarget) {
         if (playerSource != null && effectTarget != null && !playerSource.world.isRemote && callback instanceof GenericEventCallback ) {
-            GenericEventCallback eventCallback = (GenericEventCallback) callback;
-            if(eventCallback.event instanceof DodgeEvent.ServerDodgeEvent) {
-                DodgeEvent.ServerDodgeEvent event = (DodgeEvent.ServerDodgeEvent) eventCallback.event;
+            if(((GenericEventCallback<?>) callback).getEvent() instanceof DodgeEvent.ServerDodgeEvent) {
+                DodgeEvent.ServerDodgeEvent event = (DodgeEvent.ServerDodgeEvent) ((GenericEventCallback<?>) callback).getEvent();
                 event.setForce(event.getForce() * forceMultiplier);
             }
         }
