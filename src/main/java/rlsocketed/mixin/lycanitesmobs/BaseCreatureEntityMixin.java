@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import socketed.common.capabilities.socketable.CapabilitySocketableHandler;
-import socketed.common.capabilities.socketable.ICapabilitySocketable;
-import socketed.common.socket.TieredSocket;
+import socketed.api.common.capabilities.socketable.CapabilitySocketableHandler;
+import socketed.api.common.capabilities.socketable.ICapabilitySocketable;
+import socketed.api.socket.TieredSocket;
 
 @Mixin(BaseCreatureEntity.class)
 public class BaseCreatureEntityMixin {

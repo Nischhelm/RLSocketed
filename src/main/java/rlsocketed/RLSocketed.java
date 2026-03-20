@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import rlsocketed.config.DefaultJsonAddons;
 import rlsocketed.activator.DodgeActivator;
 import rlsocketed.gemeffects.DodgeForceEffect;
-import socketed.common.util.SocketedUtil;
+import socketed.api.util.SocketedUtil;
 
 @Mod(
         modid = RLSocketed.MODID,

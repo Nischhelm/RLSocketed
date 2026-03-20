@@ -4,13 +4,15 @@ import com.elenai.elenaidodge.api.DodgeEvent;
 import com.google.gson.annotations.SerializedName;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import socketed.Socketed;
-import socketed.common.socket.gem.effect.activatable.ActivatableGemEffect;
-import socketed.common.socket.gem.effect.activatable.activator.GenericActivator;
-import socketed.common.socket.gem.effect.activatable.callback.GenericEventCallback;
-import socketed.common.socket.gem.effect.activatable.callback.IEffectCallback;
-import socketed.common.socket.gem.effect.activatable.target.GenericTarget;
-import socketed.common.socket.gem.effect.slot.ISlotType;
+import socketed.api.socket.gem.effect.activatable.ActivatableGemEffect;
+import socketed.api.socket.gem.effect.activatable.activator.GenericActivator;
+import socketed.api.socket.gem.effect.activatable.callback.GenericEventCallback;
+import socketed.api.socket.gem.effect.activatable.callback.IEffectCallback;
+import socketed.api.socket.gem.effect.activatable.target.GenericTarget;
+import socketed.api.socket.gem.effect.slot.ISlotType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -20,8 +22,8 @@ public class DodgeForceEffect extends ActivatableGemEffect {
     @SerializedName("Force Multiplier")
     private final Double forceMultiplier;
 
-    public DodgeForceEffect(ISlotType slotType, GenericActivator activator, List<GenericTarget> targets, double forceMultiplier) {
-        super(slotType, activator, targets);
+    public DodgeForceEffect(ISlotType slotType, GenericActivator activator, List<GenericTarget> targets, double forceMultiplier, String tooltipKey) {
+        super(slotType, activator, targets, tooltipKey);
         this.forceMultiplier = forceMultiplier;
     }
 
@@ -35,8 +37,10 @@ public class DodgeForceEffect extends ActivatableGemEffect {
         }
     }
 
+    //TODO
+    @SideOnly(Side.CLIENT)
     @Override
-    public String getTooltipString(boolean b) {
+    public String getTooltipString() {
         return "";
     }
 
@@ -45,6 +49,9 @@ public class DodgeForceEffect extends ActivatableGemEffect {
         return TYPE_NAME;
     }
 
+    /**
+     * Force Multiplier: required
+     */
     public boolean validate() {
         if (super.validate()) {
             if (this.forceMultiplier == null) {

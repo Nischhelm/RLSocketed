@@ -16,9 +16,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import rlsocketed.RLSocketed;
-import socketed.common.capabilities.socketable.CapabilitySocketableHandler;
-import socketed.common.capabilities.socketable.ICapabilitySocketable;
-import socketed.common.socket.GenericSocket;
+import socketed.api.common.capabilities.socketable.CapabilitySocketableHandler;
+import socketed.api.common.capabilities.socketable.ICapabilitySocketable;
+import socketed.api.socket.GenericSocket;
 
 @Mixin(EquipmentForgeContainer.class)
 public abstract class EquipmentForgeContainerMixin {

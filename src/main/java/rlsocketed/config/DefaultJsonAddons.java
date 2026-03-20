@@ -3,12 +3,12 @@ package rlsocketed.config;
 import net.minecraft.util.text.TextFormatting;
 import rlsocketed.activator.DodgeActivator;
 import rlsocketed.gemeffects.DodgeForceEffect;
+import socketed.api.socket.gem.GemType;
+import socketed.api.socket.gem.effect.slot.SocketedSlotTypes;
 import socketed.common.config.DefaultJsonConfig;
-import socketed.common.socket.gem.GemType;
 import socketed.common.socket.gem.effect.activatable.PotionGemEffect;
 import socketed.common.socket.gem.effect.activatable.target.SelfAOETarget;
 import socketed.common.socket.gem.effect.activatable.target.SelfTarget;
-import socketed.common.socket.gem.effect.slot.SocketedSlotTypes;
 import socketed.common.socket.gem.filter.ItemFilter;
 
 import java.util.Arrays;
@@ -23,7 +23,8 @@ public abstract class DefaultJsonAddons {
                         Collections.singletonList(new SelfTarget(null)),
                         "minecraft:speed",
                         2,
-                        200
+                        200,
+                        null
                 )),
                 Collections.singletonList(new ItemFilter("minecraft:sugar", 0, false))));
 
@@ -35,13 +36,15 @@ public abstract class DefaultJsonAddons {
                             Collections.singletonList(new SelfAOETarget(null, 3)),
                             "potioncore:explode",
                             0,
-                            1
+                            1,
+                                null
                         ),
                         new DodgeForceEffect(
                             SocketedSlotTypes.FEET,
                             new DodgeActivator(null),
                             Collections.singletonList(new SelfTarget(null)),
-                            1.5D
+                            1.5D,
+                                null
                         )
                 ),
                 Collections.singletonList(new ItemFilter("blaze_powder", 0, false))));
