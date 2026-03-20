@@ -1,4 +1,6 @@
 rlsocketed.tooltip.activator.dodge=On Dodge
+rlsocketed.tooltip.effect.thirst.pos=Replenishes %d Thirst
+rlsocketed.tooltip.effect.thirst.neg=Draws %d Thirst
 
 rlsocketed.tooltip.default.sugar=Get out of dodge!
 rlsocketed.tooltip.default.blaze_powder=Farting in your general direction

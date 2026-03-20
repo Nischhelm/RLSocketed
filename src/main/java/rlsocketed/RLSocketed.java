@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import rlsocketed.config.DefaultJsonAddons;
 import rlsocketed.activator.DodgeActivator;
 import rlsocketed.gemeffects.DodgeForceEffect;
+import rlsocketed.gemeffects.ThirstEffect;
 import socketed.api.util.SocketedUtil;
 
 @Mod(
@@ -33,6 +34,7 @@ public class RLSocketed {
         if(Loader.isModLoaded("elenaidodge")) {
             SocketedUtil.registerActivator(DodgeActivator.TYPE_NAME, DodgeActivator.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(DodgeForceEffect.TYPE_NAME, DodgeForceEffect.class, RLSocketed.MODID);
+            SocketedUtil.registerEffectType(ThirstEffect.TYPE_NAME, ThirstEffect.class, RLSocketed.MODID);
             DefaultJsonAddons.initializeBuiltinEntries();
         }
         if(Loader.isModLoaded("lycanitesmobs")) {
