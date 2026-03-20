@@ -2,8 +2,10 @@ package rlsocketed.gemeffects;
 
 import com.elenai.elenaidodge.api.DodgeEvent;
 import com.google.gson.annotations.SerializedName;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import socketed.Socketed;
@@ -37,11 +39,10 @@ public class DodgeForceEffect extends ActivatableGemEffect {
         }
     }
 
-    //TODO
     @SideOnly(Side.CLIENT)
     @Override
     public String getTooltipString() {
-        return "";
+        return I18n.format("rlsocketed.tooltip.effect.dodgeforce", "x"+ ((int) (forceMultiplier * 100)) / 100);
     }
 
     @Override
