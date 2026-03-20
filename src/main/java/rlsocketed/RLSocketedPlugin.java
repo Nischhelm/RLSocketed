@@ -1,6 +1,7 @@
 package rlsocketed;
 
 import fermiumbooter.FermiumRegistryAPI;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
 
@@ -11,7 +12,7 @@ public class RLSocketedPlugin implements IFMLLoadingPlugin {
 
     public RLSocketedPlugin() {
         MixinBootstrap.init();
-        FermiumRegistryAPI.enqueueMixin(true, "mixins.rlsocketed.lycanitesmobs.json");
+        FermiumRegistryAPI.enqueueMixin(true, "mixins.rlsocketed.lycanitesmobs.json", () -> Loader.isModLoaded("lycanitesmobs"));
     }
 
     @Override
