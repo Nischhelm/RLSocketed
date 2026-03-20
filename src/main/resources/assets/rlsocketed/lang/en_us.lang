@@ -1,4 +1,5 @@
 rlsocketed.tooltip.activator.dodge=On Dodge
+rlsocketed.tooltip.effect.dodgeforce=Dodge Force %s
 rlsocketed.tooltip.effect.thirst.pos=Replenishes %d Thirst
 rlsocketed.tooltip.effect.thirst.neg=Draws %d Thirst
 
