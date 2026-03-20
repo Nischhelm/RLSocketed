@@ -1,7 +1,15 @@
 rlsocketed.tooltip.activator.dodge=On Dodge
 rlsocketed.tooltip.effect.dodgeforce=Dodge Force %s
+rlsocketed.tooltip.effect.temperature.pos=+%d Warmth
+rlsocketed.tooltip.effect.temperature.neg=+%d Cooling
 rlsocketed.tooltip.effect.thirst.pos=Replenishes %d Thirst
 rlsocketed.tooltip.effect.thirst.neg=Draws %d Thirst
 
 rlsocketed.tooltip.default.sugar=Get out of dodge!
 rlsocketed.tooltip.default.blaze_powder=Farting in your general direction
+rlsocketed.tooltip.default.wool=Cozy
+rlsocketed.tooltip.default.ice=Keep a cool head
+rlsocketed.tooltip.default.water=Practically Infinite!
+
+rlsocketed.tooltip.default.water.tooltip=Replenishes Thirst slowly
+rlsocketed.tooltip.default.water.tooltip.2=Not entirely clean...

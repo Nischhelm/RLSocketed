@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import rlsocketed.config.DefaultJsonAddons;
 import rlsocketed.activator.DodgeActivator;
 import rlsocketed.gemeffects.DodgeForceEffect;
+import rlsocketed.gemeffects.TemperatureEffect;
 import rlsocketed.gemeffects.ThirstEffect;
 import socketed.api.util.SocketedUtil;
 
@@ -34,6 +35,7 @@ public class RLSocketed {
         if(Loader.isModLoaded("elenaidodge")) {
             SocketedUtil.registerActivator(DodgeActivator.TYPE_NAME, DodgeActivator.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(DodgeForceEffect.TYPE_NAME, DodgeForceEffect.class, RLSocketed.MODID);
+            SocketedUtil.registerEffectType(TemperatureEffect.TYPE_NAME, TemperatureEffect.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(ThirstEffect.TYPE_NAME, ThirstEffect.class, RLSocketed.MODID);
             DefaultJsonAddons.initializeBuiltinEntries();
         }

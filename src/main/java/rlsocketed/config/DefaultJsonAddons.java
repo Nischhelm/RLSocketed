@@ -3,10 +3,14 @@ package rlsocketed.config;
 import net.minecraft.util.text.TextFormatting;
 import rlsocketed.activator.DodgeActivator;
 import rlsocketed.gemeffects.DodgeForceEffect;
+import rlsocketed.gemeffects.TemperatureEffect;
+import rlsocketed.gemeffects.ThirstEffect;
 import socketed.api.socket.gem.GemType;
 import socketed.api.socket.gem.effect.slot.SocketedSlotTypes;
 import socketed.common.config.DefaultJsonConfig;
 import socketed.common.socket.gem.effect.activatable.PotionGemEffect;
+import socketed.common.socket.gem.effect.activatable.activator.PassiveActivator;
+import socketed.common.socket.gem.effect.activatable.condition.ChanceCondition;
 import socketed.common.socket.gem.effect.activatable.target.SelfAOETarget;
 import socketed.common.socket.gem.effect.activatable.target.SelfTarget;
 import socketed.common.socket.gem.filter.ItemFilter;
@@ -48,6 +52,45 @@ public abstract class DefaultJsonAddons {
                         )
                 ),
                 Collections.singletonList(new ItemFilter("blaze_powder", 0, false))));
+
+        DefaultJsonConfig.registerDefaultGemType("wool", new GemType("rlsocketed.tooltip.default.wool", 0, TextFormatting.GOLD,
+                Collections.singletonList(
+                        new TemperatureEffect(
+                                SocketedSlotTypes.BODY,
+                                2
+                        )
+                ),
+                Collections.singletonList(new ItemFilter("wool", 0, false))));
+
+        DefaultJsonConfig.registerDefaultGemType("ice", new GemType("rlsocketed.tooltip.default.ice", 0, TextFormatting.AQUA,
+                Collections.singletonList(
+                        new TemperatureEffect(
+                                SocketedSlotTypes.BODY,
+                                -2
+                        )
+                ),
+                Collections.singletonList(new ItemFilter("ice", 0, false))));
+
+        DefaultJsonConfig.registerDefaultGemType("water_bucket", new GemType("rlsocketed.tooltip.default.water", 0, TextFormatting.AQUA,
+                Arrays.asList(
+                        new ThirstEffect(
+                                SocketedSlotTypes.BODY,
+                                new PassiveActivator(null, 100),
+                                Collections.singletonList(new SelfTarget(null)),
+                                1,
+                                "rlsocketed.tooltip.default.water.tooltip"
+                        ),
+                        new PotionGemEffect(
+                                SocketedSlotTypes.BODY,
+                                new PassiveActivator(new ChanceCondition(0.002F), 100),
+                                Collections.singletonList(new SelfTarget(null)),
+                                "simpledifficulty:parasites",
+                                0,
+                                600,
+                                "rlsocketed.tooltip.default.water.tooltip.2"
+                        )
+                ),
+                Collections.singletonList(new ItemFilter("water_bucket", 0, false))));
     }
 }
 

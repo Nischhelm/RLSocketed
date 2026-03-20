@@ -22,7 +22,7 @@ public class ThirstEffect extends ActivatableGemEffect {
     @SerializedName("Amount")
     public Integer amount;
 
-    public ThirstEffect(ISlotType slotType, GenericActivator activator, List<GenericTarget> targets, String tooltipKey, int amount) {
+    public ThirstEffect(ISlotType slotType, GenericActivator activator, List<GenericTarget> targets, int amount, String tooltipKey) {
         super(slotType, activator, targets, tooltipKey);
         this.amount = amount;
     }
