@@ -8,7 +8,7 @@
   "url": "https://www.curseforge.com/members/fonnymunkey/projects",
   "updateUrl": "",
   "authorList": ${mod_author},
-  "credits": "",
+  "credits":, "fonnymunkey and Shivaxi for the idea and initial design of Socketed",
   "logoFile": "logo.png",
   "dependencies": []
 }

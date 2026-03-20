@@ -72,6 +72,7 @@ dependencies {
     implementation fg.deobf("curse.maven:elenai-dodge-${elenaidodge_version}")
     implementation fg.deobf("curse.maven:simpledifficulty-${simpledifficulty_version}")
     implementation fg.deobf("curse.maven:lycanitesmobs-${lycanites_version}")
+    implementation fg.deobf("curse.maven:potioncore-${potioncore_version}")
     implementation fg.deobf("libs:socketed:indev") // indev
 }
 
