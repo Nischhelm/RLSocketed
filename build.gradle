@@ -17,11 +17,12 @@ minecraft {
 
     runs {
         client {
-            args "--username=InDev"
+            args "--username=Nischhelm"
 
             jvmArg "-Dfml.coreMods.load=${mixin_loader_class}"
             jvmArg "-Dmixin.hotSwap=true"
             jvmArg "-Dmixin.checks.interfaces=true"
+            jvmArg "-Dmixin.debug.export=true"
 
             workingDirectory project.file('run')
 
@@ -73,6 +74,7 @@ dependencies {
     implementation fg.deobf("curse.maven:simpledifficulty-${simpledifficulty_version}")
     implementation fg.deobf("curse.maven:lycanitesmobs-${lycanites_version}")
     implementation fg.deobf("curse.maven:potioncore-${potioncore_version}")
+    implementation fg.deobf("curse.maven:infernalmobs-${infernalmobs_version}")
     implementation fg.deobf("libs:socketed:indev") // indev
 }
 

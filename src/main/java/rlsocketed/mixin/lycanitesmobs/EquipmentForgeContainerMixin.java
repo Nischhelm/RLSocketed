@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import rlsocketed.RLSocketed;
 import socketed.api.common.capabilities.socketable.CapabilitySocketableHandler;
 import socketed.api.common.capabilities.socketable.ICapabilitySocketable;
 import socketed.api.socket.GenericSocket;

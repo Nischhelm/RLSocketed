@@ -1,14 +1,13 @@
 package rlsocketed;
 
-import com.lycanitesmobs.core.item.equipment.ItemEquipment;
-import com.lycanitesmobs.core.item.equipment.ItemEquipmentPart;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import rlsocketed.config.DefaultJsonAddons;
 import rlsocketed.activator.DodgeActivator;
+import rlsocketed.config.DefaultJsonAddons;
+import rlsocketed.config.ForgeConfig;
 import rlsocketed.gemeffects.DodgeForceEffect;
 import rlsocketed.gemeffects.TemperatureEffect;
 import rlsocketed.gemeffects.ThirstEffect;
@@ -18,7 +17,8 @@ import socketed.api.util.SocketedUtil;
         modid = RLSocketed.MODID,
         name = RLSocketed.MODNAME,
         version = RLSocketed.VERSION,
-        dependencies = "required-after:socketed"
+        dependencies = "required-after:socketed;" +
+                       "required-after:fermiumbooter;"
 )
 public class RLSocketed {
 
@@ -40,18 +40,26 @@ public class RLSocketed {
             SocketedUtil.registerEffectType(TemperatureEffect.TYPE_NAME, TemperatureEffect.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(ThirstEffect.TYPE_NAME, ThirstEffect.class, RLSocketed.MODID);
         }
-        if(Loader.isModLoaded("mujmajnkraftsbettersurvival"))
-            SocketedUtil.registerForcedItemType("BS_WEAPON", "mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer|)", 5);
-        if(Loader.isModLoaded("spartanweaponry"))
-            SocketedUtil.registerForcedItemType("SW_CROSSBOW", "spartan(defiled|fire|weaponry):crossbow_\\w+", 3);
-        if(Loader.isModLoaded("oe"))
-            SocketedUtil.registerForcedItemType("TRIDENT", "oe:trident", 2);
-        if(Loader.isModLoaded("defiledlands"))
-            SocketedUtil.registerForcedItemType("DEFILED", "defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)", 1);
-        if(Loader.isModLoaded("lycanitesmobs")) {
-            SocketedUtil.registerForcedItemType("LYCANITETOOLPART", item -> item instanceof ItemEquipmentPart, 0); //Sockets rolls handled in BaseCreatureEntityMixin
-            SocketedUtil.registerForcedItemType("LYCANITETOOL", item -> item instanceof ItemEquipment, 0);
-        }
+
+        new ItemTypeContainer("mujmajnkraftsbettersurvival","BS_WEAPON","mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer|)").register();
+        new ItemTypeContainer("spartanweaponry","BS_WEAPON","spartan(defiled|fire|weaponry):crossbow_\\w+").register();
+        new ItemTypeContainer("defiledlands","BS_WEAPON","defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)").register();
+        new ItemTypeContainer("oe","TRIDENT","oe:trident").register();
+
         DefaultJsonAddons.initializeBuiltinEntries();
+    }
+
+    public static class ItemTypeContainer {
+        String typeName, regex, dependencyModid;
+        public ItemTypeContainer(String typeName, String regex, String dependencyModid) {
+            this.typeName = typeName;
+            this.regex = regex;
+            this.dependencyModid = dependencyModid;
+        }
+
+        public void register(){
+            if(Loader.isModLoaded(dependencyModid) && ForgeConfig.itemTypeRolls.containsKey(typeName))
+                SocketedUtil.registerForcedItemType(typeName, regex, ForgeConfig.itemTypeRolls.get(typeName));
+        }
     }
 }
