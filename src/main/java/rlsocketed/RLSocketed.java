@@ -35,13 +35,23 @@ public class RLSocketed {
         if(Loader.isModLoaded("elenaidodge")) {
             SocketedUtil.registerActivator(DodgeActivator.TYPE_NAME, DodgeActivator.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(DodgeForceEffect.TYPE_NAME, DodgeForceEffect.class, RLSocketed.MODID);
+        }
+        if(Loader.isModLoaded("simpledifficulty")) {
             SocketedUtil.registerEffectType(TemperatureEffect.TYPE_NAME, TemperatureEffect.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(ThirstEffect.TYPE_NAME, ThirstEffect.class, RLSocketed.MODID);
-            DefaultJsonAddons.initializeBuiltinEntries();
         }
+        if(Loader.isModLoaded("mujmajnkraftsbettersurvival"))
+            SocketedUtil.registerForcedItemType("BS_WEAPON", "mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer|)", 5);
+        if(Loader.isModLoaded("spartanweaponry"))
+            SocketedUtil.registerForcedItemType("SW_CROSSBOW", "spartan(defiled|fire|weaponry):crossbow_\\w+", 3);
+        if(Loader.isModLoaded("oe"))
+            SocketedUtil.registerForcedItemType("TRIDENT", "oe:trident", 2);
+        if(Loader.isModLoaded("defiledlands"))
+            SocketedUtil.registerForcedItemType("DEFILED", "defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)", 1);
         if(Loader.isModLoaded("lycanitesmobs")) {
             SocketedUtil.registerForcedItemType("LYCANITETOOLPART", item -> item instanceof ItemEquipmentPart, 0); //Sockets rolls handled in BaseCreatureEntityMixin
             SocketedUtil.registerForcedItemType("LYCANITETOOL", item -> item instanceof ItemEquipment, 0);
         }
+        DefaultJsonAddons.initializeBuiltinEntries();
     }
 }
