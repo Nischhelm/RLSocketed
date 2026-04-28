@@ -34,7 +34,7 @@ public class ForgeConfig {
     public static InfernalMobsConfig infernal = new InfernalMobsConfig();
 
     public static class InfernalMobsConfig {
-        @Config.Comment("How often an item dropped by elite tier infernalmobs will attempt to roll with sockets")
+        @Config.Comment("Base chance for items dropped by elite tier infernalmobs to attempt to roll with sockets")
         @Config.Name("Elite Socket Chance")
         @Config.RangeDouble(min = 0, max = 1)
         public float chanceElite = 0.2F;
@@ -44,7 +44,7 @@ public class ForgeConfig {
         @Config.RangeInt(min = 0)
         public int maxSocketsOnElite = 2;
 
-        @Config.Comment("How often an item dropped by ultra tier infernalmobs will attempt to roll with sockets")
+        @Config.Comment("Base chance for items dropped by ultra tier infernalmobs to attempt to roll with sockets")
         @Config.Name("Ultra Socket Chance")
         @Config.RangeDouble(min = 0, max = 1)
         public float chanceUltra = 0.4F;
@@ -54,7 +54,7 @@ public class ForgeConfig {
         @Config.RangeInt(min = 0)
         public int maxSocketsOnUltra = 3;
 
-        @Config.Comment("How often an item dropped by infernal tier infernalmobs will attempt to roll with sockets")
+        @Config.Comment("Base chance for items dropped by infernal tier infernalmobs to attempt to roll with sockets")
         @Config.Name("Infernal Socket Chance")
         @Config.RangeDouble(min = 0, max = 1)
         public float chanceInfernal = 0.6F;
