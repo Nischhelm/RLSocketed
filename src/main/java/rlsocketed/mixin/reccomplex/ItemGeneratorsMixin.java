@@ -24,7 +24,7 @@ public abstract class ItemGeneratorsMixin extends Item {
 
         ReccomplexCompat.currLootTable = ItemLootGenerationTag.lootTableKey(generatingStack);
         SocketedUtil.addSocketsToStack(stack, ModdedCreationContexts.RECCOMPLEX);
-        ReccomplexCompat.currStructure = null;
+        ReccomplexCompat.currLootTable = null;
 
         return stack;
     }

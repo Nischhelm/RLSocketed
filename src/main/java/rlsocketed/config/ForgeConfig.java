@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlsocketed.RLSocketed;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -116,7 +117,73 @@ public class ForgeConfig {
         public int maxSockets = 4;
     }
 
+    @Config.Name("Recurrent Complex")
+    public static ReccomplexConfig reccomplex = new ReccomplexConfig();
+
+    public static class ReccomplexConfig {
+        @Config.Comment({
+                "Base chance for Recurrent Ccomplex loot to attempt to roll with sockets",
+                "Default value, can be overwritten by structure and loot table"
+        })
+        @Config.Name("Default Socket Chance")
+        @Config.RangeDouble(min = 0, max = 1)
+        public float chance = 0.2F;
+
+        @Config.Comment({
+                "How many sockets Recurrent Ccomplex loot can roll at maximum",
+                "Default value, can be overwritten by structure and loot table"
+        })
+        @Config.Name("Default Max Sockets")
+        @Config.RangeInt(min = 0)
+        public int maxSockets = 4;
+
+        @Config.Comment("Pattern: structure name, chance, max sockets")
+        @Config.Name("By Structure Name")
+        public String[] byStructureName = {};
+
+        @Config.Comment("Is prioritized over structure name. Pattern: loot table name, chance, max sockets")
+        @Config.Name("By Loot Table")
+        public String[] byLootTableName = {};
+
+        public static Map<String, Float> chancesByStructure;
+        public static Map<String, Float> chancesByLootTable;
+        public static Map<String, Integer> maxSocketsByStructure;
+        public static Map<String, Integer> maxSocketsByLootTable;
+
+        public static void init(){
+            chancesByStructure = new HashMap<>();
+            chancesByLootTable = new HashMap<>();
+
+            Arrays.stream(ForgeConfig.reccomplex.byStructureName)
+                    .map(line -> line.split(","))
+                    .filter(arr -> arr.length == 3)
+                    .forEach(arr -> {
+                        String name = arr[0];
+                        float chance = Float.parseFloat(arr[1]);
+                        int maxSockets = Integer.parseInt(arr[2]);
+                        chancesByStructure.put(name, chance);
+                        maxSocketsByStructure.put(name, maxSockets);
+                    });
+
+            Arrays.stream(ForgeConfig.reccomplex.byLootTableName)
+                    .map(line -> line.split(","))
+                    .filter(arr -> arr.length == 3)
+                    .forEach(arr -> {
+                        String name = arr[0];
+                        float chance = Float.parseFloat(arr[1]);
+                        int maxSockets = Integer.parseInt(arr[2]);
+                        chancesByLootTable.put(name, chance);
+                        maxSocketsByLootTable.put(name, maxSockets);
+                    });
+        }
+    }
+
+    public static void init() {
+        ReccomplexConfig.init();
+    }
+
     public static void reset() {
+        init();
     }
 
     @Mod.EventBusSubscriber(modid = socketed.Socketed.MODID)
