@@ -77,6 +77,7 @@ dependencies {
     implementation fg.deobf("curse.maven:infernalmobs-${infernalmobs_version}")
     implementation fg.deobf("curse.maven:dldungeons-74246:7931984")
     implementation fg.deobf("curse.maven:fnars-roguelike-dungeons-373157:5688058")
+    implementation fg.deobf("curse.maven:recurrent-complex-223150:5615733")
     implementation fg.deobf("libs:socketed:indev") // indev
 }
 

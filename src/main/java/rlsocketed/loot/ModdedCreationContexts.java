@@ -1,5 +1,6 @@
 package rlsocketed.loot;
 
+import rlsocketed.compat.ReccomplexCompat;
 import rlsocketed.config.ForgeConfig;
 import socketed.common.loot.IItemCreationContext;
 
@@ -68,6 +69,17 @@ public enum ModdedCreationContexts implements IItemCreationContext {
         @Override
         public int getMaxSockets() {
             return ForgeConfig.roguelike.maxSockets;
+        }
+    },
+    RECCOMPLEX {
+        @Override
+        public float getChance() {
+            return ReccomplexCompat.getChance();
+        }
+
+        @Override
+        public int getMaxSockets() {
+            return ReccomplexCompat.getMaxSockets();
         }
     }
 }
