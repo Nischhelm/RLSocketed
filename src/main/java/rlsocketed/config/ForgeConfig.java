@@ -101,6 +101,21 @@ public class ForgeConfig {
         public int maxSocketsSpecial = 4;
     }
 
+    @Config.Name("Roguelike Dungeons")
+    public static RoguelikeConfig roguelike = new RoguelikeConfig();
+
+    public static class RoguelikeConfig {
+        @Config.Comment("Base chance for Roguelike Dungeon loot to attempt to roll with sockets")
+        @Config.Name("Socket Chance")
+        @Config.RangeDouble(min = 0, max = 1)
+        public float chance = 0.2F;
+
+        @Config.Comment("How many sockets Roguelike Dungeon loot can roll at maximum")
+        @Config.Name("Max Sockets")
+        @Config.RangeInt(min = 0)
+        public int maxSockets = 4;
+    }
+
     public static void reset() {
     }
 
