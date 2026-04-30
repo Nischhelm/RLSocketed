@@ -3,7 +3,7 @@ package rlsocketed.loot;
 import rlsocketed.config.ForgeConfig;
 import socketed.common.loot.IItemCreationContext;
 
-public enum InfernalMobsCreationContext implements IItemCreationContext {
+public enum ModdedCreationContexts implements IItemCreationContext {
     INFERNALMOB_ELITE {
         @Override
         public float getChance() {
@@ -35,6 +35,28 @@ public enum InfernalMobsCreationContext implements IItemCreationContext {
         @Override
         public int getMaxSockets() {
             return ForgeConfig.infernal.getMaxSockets(2);
+        }
+    },
+    DLDUNGEON_LOOT {
+        @Override
+        public float getChance() {
+            return ForgeConfig.dldungeons.chance;
+        }
+
+        @Override
+        public int getMaxSockets() {
+            return ForgeConfig.dldungeons.maxSockets;
+        }
+    },
+    DLDUNGEON_LOOT_SPECIAL {
+        @Override
+        public float getChance() {
+            return ForgeConfig.dldungeons.chanceSpecial;
+        }
+
+        @Override
+        public int getMaxSockets() {
+            return ForgeConfig.dldungeons.maxSocketsSpecial;
         }
     }
 }

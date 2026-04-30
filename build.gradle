@@ -75,6 +75,7 @@ dependencies {
     implementation fg.deobf("curse.maven:lycanitesmobs-${lycanites_version}")
     implementation fg.deobf("curse.maven:potioncore-${potioncore_version}")
     implementation fg.deobf("curse.maven:infernalmobs-${infernalmobs_version}")
+    implementation fg.deobf("curse.maven:dldungeons-74246:7931984")
     implementation fg.deobf("libs:socketed:indev") // indev
 }
 

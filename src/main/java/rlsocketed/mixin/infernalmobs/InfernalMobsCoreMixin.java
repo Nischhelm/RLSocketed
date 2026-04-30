@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import rlsocketed.loot.InfernalMobsCreationContext;
+import rlsocketed.loot.ModdedCreationContexts;
 import socketed.api.util.SocketedUtil;
 
 @Mixin(InfernalMobsCore.class)
@@ -26,9 +26,9 @@ public abstract class InfernalMobsCoreMixin {
             @Local(name = "prefix") int tier
     ){
         SocketedUtil.addSocketsToStack(stack,
-                tier == 0 ? InfernalMobsCreationContext.INFERNALMOB_ELITE :
-                tier == 1 ? InfernalMobsCreationContext.INFERNALMOB_ULTRA :
-                            InfernalMobsCreationContext.INFERNALMOB_INFERNAL
+                tier == 0 ? ModdedCreationContexts.INFERNALMOB_ELITE :
+                tier == 1 ? ModdedCreationContexts.INFERNALMOB_ULTRA :
+                            ModdedCreationContexts.INFERNALMOB_INFERNAL
         );
     }
 }

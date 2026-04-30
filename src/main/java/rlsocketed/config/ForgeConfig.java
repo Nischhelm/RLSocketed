@@ -75,9 +75,33 @@ public class ForgeConfig {
                                chanceInfernal;
         }
     }
-    
-    public static void reset() {
 
+    @Config.Name("Doomlike Dungeons")
+    public static DoomlikeConfig dldungeons = new DoomlikeConfig();
+
+    public static class DoomlikeConfig {
+        @Config.Comment("Base chance for normal Doomlike Dungeon loot to attempt to roll with sockets")
+        @Config.Name("Socket Chance")
+        @Config.RangeDouble(min = 0, max = 1)
+        public float chance = 0.2F;
+
+        @Config.Comment("How many sockets normal Doomlike Dungeon loot can roll at maximum")
+        @Config.Name("Max Sockets")
+        @Config.RangeInt(min = 0)
+        public int maxSockets = 4;
+
+        @Config.Comment("Base chance for boss and special Doomlike Dungeon loot to attempt to roll with sockets")
+        @Config.Name("Socket Chance Special")
+        @Config.RangeDouble(min = 0, max = 1)
+        public float chanceSpecial = 0.2F;
+
+        @Config.Comment("How many sockets boss and special Doomlike Dungeon loot can roll at maximum")
+        @Config.Name("Max Sockets Special")
+        @Config.RangeInt(min = 0)
+        public int maxSocketsSpecial = 4;
+    }
+
+    public static void reset() {
     }
 
     @Mod.EventBusSubscriber(modid = socketed.Socketed.MODID)
