@@ -23,6 +23,8 @@ public abstract class ItemGeneratorsMixin extends Item {
         if(stack.isEmpty()) return stack;
 
         ReccomplexCompat.currLootTable = ItemLootGenerationTag.lootTableKey(generatingStack);
+        if(ReccomplexCompat.currLootTable == null && (generatingStack.getItem() == RCItems.artifactGenerationTag || generatingStack.hasTagCompound() && generatingStack.getTagCompound().getString("RC_HIDDEN_ITEM").equals("reccomplex:artifact_generation_tag")))
+            ReccomplexCompat.currLootTable = "reccomplex:artifact_generation_tag";
         SocketedUtil.addSocketsToStack(stack, ModdedCreationContexts.RECCOMPLEX);
         ReccomplexCompat.currLootTable = null;
 
