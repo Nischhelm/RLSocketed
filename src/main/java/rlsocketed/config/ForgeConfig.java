@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-@Config(modid = RLSocketed.MODID, name = RLSocketed.MODNAME)
+@Config(modid = RLSocketed.MODID)
 public class ForgeConfig {
 
     @Config.Comment({
@@ -186,7 +186,7 @@ public class ForgeConfig {
         init();
     }
 
-    @Mod.EventBusSubscriber(modid = socketed.Socketed.MODID)
+    @Mod.EventBusSubscriber
     private static class EventHandler {
         
         @SubscribeEvent
