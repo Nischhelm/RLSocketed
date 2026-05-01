@@ -153,14 +153,16 @@ public class ForgeConfig {
         public static void init(){
             chancesByStructure = new HashMap<>();
             chancesByLootTable = new HashMap<>();
+            maxSocketsByStructure = new HashMap<>();
+            maxSocketsByLootTable = new HashMap<>();
 
             Arrays.stream(ForgeConfig.reccomplex.byStructureName)
                     .map(line -> line.split(","))
                     .filter(arr -> arr.length == 3)
                     .forEach(arr -> {
-                        String name = arr[0];
-                        float chance = Float.parseFloat(arr[1]);
-                        int maxSockets = Integer.parseInt(arr[2]);
+                        String name = arr[0].trim();
+                        float chance = Float.parseFloat(arr[1].trim());
+                        int maxSockets = Integer.parseInt(arr[2].trim());
                         chancesByStructure.put(name, chance);
                         maxSocketsByStructure.put(name, maxSockets);
                     });
@@ -169,9 +171,9 @@ public class ForgeConfig {
                     .map(line -> line.split(","))
                     .filter(arr -> arr.length == 3)
                     .forEach(arr -> {
-                        String name = arr[0];
-                        float chance = Float.parseFloat(arr[1]);
-                        int maxSockets = Integer.parseInt(arr[2]);
+                        String name = arr[0].trim();
+                        float chance = Float.parseFloat(arr[1].trim());
+                        int maxSockets = Integer.parseInt(arr[2].trim());
                         chancesByLootTable.put(name, chance);
                         maxSocketsByLootTable.put(name, maxSockets);
                     });
