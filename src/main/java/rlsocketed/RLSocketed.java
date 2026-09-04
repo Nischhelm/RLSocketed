@@ -48,8 +48,8 @@ public class RLSocketed {
         }
 
         new ItemTypeContainer("mujmajnkraftsbettersurvival","BS_WEAPON","mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer|)").register();
-        new ItemTypeContainer("spartanweaponry","BS_WEAPON","spartan(defiled|fire|weaponry):crossbow_\\w+").register();
-        new ItemTypeContainer("defiledlands","BS_WEAPON","defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)").register();
+        new ItemTypeContainer("spartanweaponry","SW_CROSSBOW","spartan(defiled|fire|weaponry):crossbow_\\w+").register();
+        new ItemTypeContainer("defiledlands","DEFILED","defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)").register();
         new ItemTypeContainer("oe","TRIDENT","oe:trident").register();
 
         DefaultJsonAddons.initializeBuiltinEntries();
@@ -57,7 +57,7 @@ public class RLSocketed {
 
     public static class ItemTypeContainer {
         String typeName, regex, dependencyModid;
-        public ItemTypeContainer(String typeName, String regex, String dependencyModid) {
+        public ItemTypeContainer(String dependencyModid, String typeName, String regex) {
             this.typeName = typeName;
             this.regex = regex;
             this.dependencyModid = dependencyModid;
