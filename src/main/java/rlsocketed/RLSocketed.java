@@ -14,6 +14,7 @@ import rlsocketed.config.ForgeConfig;
 import rlsocketed.gemeffects.DodgeForceEffect;
 import rlsocketed.gemeffects.TemperatureEffect;
 import rlsocketed.gemeffects.ThirstEffect;
+import socketed.api.util.ItemMatcherType;
 import socketed.api.util.SocketedUtil;
 
 @Mod(
@@ -52,25 +53,39 @@ public class RLSocketed {
             TemperatureRegistry.registerModifier(new TemperatureEffect.Modifier());
         }
 
-        new ItemTypeContainer("mujmajnkraftsbettersurvival","BS_WEAPON","mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer)").register();
-        new ItemTypeContainer("spartanweaponry","SW_CROSSBOW","spartan(defiled|fire|weaponry):crossbow_\\w+").register();
-        new ItemTypeContainer("defiledlands","DEFILED","defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)").register();
-        new ItemTypeContainer("oe","TRIDENT","oe:trident").register();
+        new ItemTypeContainer("mujmajnkraftsbettersurvival", "BS_WEAPON",
+                "com.mujmajnkraft.bettersurvival.items.ItemDagger",
+                "com.mujmajnkraft.bettersurvival.items.ItemNunchaku",
+                "com.mujmajnkraft.bettersurvival.items.ItemHammer").register();
+        new ItemTypeContainer("spartanweaponry", "SW_CROSSBOW",
+                "com.oblivioussp.spartanweaponry.item.ItemCrossbow").register();
+        new ItemTypeContainer("defiledlands", "DEFILED",
+                "lykrast.defiledlands.common.item.ItemConcussionSmasher",
+                "lykrast.defiledlands.common.item.ItemUmbraBlaster",
+                "lykrast.defiledlands.common.item.ItemTears",
+                "lykrast.defiledlands.common.item.ItemRavager").register();
+        new ItemTypeContainer("oe", "TRIDENT",
+                "com.sirsquidly.oe.items.ItemTrident").register();
 
         DefaultJsonAddons.initializeBuiltinEntries();
     }
 
     public static class ItemTypeContainer {
-        String typeName, regex, dependencyModid;
-        public ItemTypeContainer(String dependencyModid, String typeName, String regex) {
+        String typeName, dependencyModid;
+        String[] classNames;
+        public ItemTypeContainer(String dependencyModid, String typeName, String... classNames) {
             this.typeName = typeName;
-            this.regex = regex;
+            this.classNames = classNames;
             this.dependencyModid = dependencyModid;
         }
 
         public void register(){
-            if(Loader.isModLoaded(dependencyModid) && ForgeConfig.itemTypeRolls.containsKey(typeName))
-                SocketedUtil.registerForcedItemType(typeName, regex, ForgeConfig.itemTypeRolls.get(typeName));
+            if(!Loader.isModLoaded(dependencyModid) || !ForgeConfig.itemTypeRolls.containsKey(typeName)) return;
+            try {
+                SocketedUtil.registerForcedItemType(typeName, ItemMatcherType.CLASS.createMatcher(String.join(",", classNames)), ForgeConfig.itemTypeRolls.get(typeName));
+            } catch(IllegalArgumentException e) {
+                LOGGER.warn("Could not register socketable item type {}, none of its item classes were found", typeName);
+            }
         }
     }
 }
