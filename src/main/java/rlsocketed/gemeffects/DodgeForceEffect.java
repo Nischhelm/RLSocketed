@@ -41,7 +41,7 @@ public class DodgeForceEffect extends ActivatableGemEffect {
     @SideOnly(Side.CLIENT)
     @Override
     public String getTooltipString() {
-        return I18n.format("rlsocketed.tooltip.effect.dodgeforce", "x"+ ((int) (forceMultiplier * 100)) / 100);
+        return I18n.format("rlsocketed.tooltip.effect.dodgeforce", "x" + ((int) (forceMultiplier * 100)) / 100F);
     }
 
     @Override
