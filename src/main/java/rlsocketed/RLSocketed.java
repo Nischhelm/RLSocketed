@@ -52,7 +52,7 @@ public class RLSocketed {
             TemperatureRegistry.registerModifier(new TemperatureEffect.Modifier());
         }
 
-        new ItemTypeContainer("mujmajnkraftsbettersurvival","BS_WEAPON","mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer|)").register();
+        new ItemTypeContainer("mujmajnkraftsbettersurvival","BS_WEAPON","mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer)").register();
         new ItemTypeContainer("spartanweaponry","SW_CROSSBOW","spartan(defiled|fire|weaponry):crossbow_\\w+").register();
         new ItemTypeContainer("defiledlands","DEFILED","defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)").register();
         new ItemTypeContainer("oe","TRIDENT","oe:trident").register();

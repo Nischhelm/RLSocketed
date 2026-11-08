@@ -18,7 +18,7 @@ public class ForgeConfig {
             "Remove or modify rolls of these socketable item types.",
             "Adding entries won't do anything.",
             "Item Types are implemented internally using regex as follows.",
-            " BS_WEAPON: mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer|)",
+            " BS_WEAPON: mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer)",
             " SW_CROSSBOW: spartan(defiled|fire|weaponry):crossbow_\\w+",
             " DEFILED: defiledlands:(concussion_smasher|umbra_blaster|tears_flame|tears_shulker|the_ravager)",
             " TRIDENT: oe:trident"
