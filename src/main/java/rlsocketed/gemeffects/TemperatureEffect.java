@@ -2,7 +2,7 @@ package rlsocketed.gemeffects;
 
 import com.charles445.simpledifficulty.api.SDCapabilities;
 import com.charles445.simpledifficulty.api.temperature.ITemperatureCapability;
-import com.llamalad7.mixinextras.lib.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
