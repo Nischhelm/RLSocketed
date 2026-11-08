@@ -13,7 +13,7 @@ public enum ModdedCreationContexts implements IItemCreationContext {
 
         @Override
         public int getMaxSockets() {
-            return ForgeConfig.infernal.getMaxSockets(1);
+            return ForgeConfig.infernal.getMaxSockets(0);
         }
     },
     INFERNALMOB_ULTRA {
