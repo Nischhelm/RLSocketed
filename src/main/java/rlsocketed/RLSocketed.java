@@ -1,5 +1,6 @@
 package rlsocketed;
 
+import com.charles445.simpledifficulty.api.temperature.TemperatureRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -48,6 +49,7 @@ public class RLSocketed {
         if(Loader.isModLoaded("simpledifficulty")) {
             SocketedUtil.registerEffectType(TemperatureEffect.TYPE_NAME, TemperatureEffect.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(ThirstEffect.TYPE_NAME, ThirstEffect.class, RLSocketed.MODID);
+            TemperatureRegistry.registerModifier(new TemperatureEffect.Modifier());
         }
 
         new ItemTypeContainer("mujmajnkraftsbettersurvival","BS_WEAPON","mujmajnkraftsbettersurvival:item.*(dagger|nunchaku|hammer|)").register();

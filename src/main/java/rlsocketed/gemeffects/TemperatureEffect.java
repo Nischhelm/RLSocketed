@@ -1,12 +1,15 @@
 package rlsocketed.gemeffects;
 
-import com.charles445.simpledifficulty.api.SDCapabilities;
-import com.charles445.simpledifficulty.api.temperature.ITemperatureCapability;
+import com.charles445.simpledifficulty.api.temperature.ITemperatureModifier;
 import com.google.gson.annotations.SerializedName;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import rlsocketed.RLSocketed;
 import socketed.Socketed;
+import socketed.api.common.capabilities.effectscache.CapabilityEffectsCacheHandler;
+import socketed.api.common.capabilities.effectscache.ICapabilityEffectsCache;
 import socketed.api.socket.gem.effect.GenericGemEffect;
 import socketed.api.socket.gem.effect.slot.ISlotType;
 
@@ -32,20 +35,6 @@ public class TemperatureEffect extends GenericGemEffect {
     }
 
     @Override
-    public void onEquip(EntityPlayer player, ItemStack stack) {
-        ITemperatureCapability cap = SDCapabilities.getTemperatureData(player);
-        if(cap == null) return;
-        cap.addTemperatureLevel(amount);
-    }
-
-    @Override
-    public void onUnequip(EntityPlayer player, ItemStack stack) {
-        ITemperatureCapability cap = SDCapabilities.getTemperatureData(player);
-        if(cap == null) return;
-        cap.addTemperatureLevel(-amount);
-    }
-
-    @Override
     public boolean validate() {
         if (!super.validate()) return false;
         if (this.amount == null) {
@@ -53,6 +42,31 @@ public class TemperatureEffect extends GenericGemEffect {
             return false;
         } else {
             return true;
+        }
+    }
+
+    // Sums all active temp gem effects
+    public static class Modifier implements ITemperatureModifier {
+        @Override
+        public float getPlayerInfluence(EntityPlayer player) {
+            ICapabilityEffectsCache cachedEffects = player.getCapability(CapabilityEffectsCacheHandler.CAP_EFFECTS_CACHE, null);
+            if(cachedEffects == null) return 0;
+
+            float sum = 0;
+            for(GenericGemEffect effect : cachedEffects.getActiveEffects())
+                if(effect instanceof TemperatureEffect)
+                    sum += ((TemperatureEffect) effect).amount;
+            return sum;
+        }
+
+        @Override
+        public float getWorldInfluence(World world, BlockPos pos) {
+            return 0;
+        }
+
+        @Override
+        public String getName() {
+            return RLSocketed.MODID + ":gems";
         }
     }
 }
