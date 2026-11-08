@@ -71,6 +71,17 @@ public enum ModdedCreationContexts implements IItemCreationContext {
             return ForgeConfig.roguelike.maxSockets;
         }
     },
+    BATTLETOWER_LOOT {
+        @Override
+        public float getChance() {
+            return ForgeConfig.battletowers.chance;
+        }
+
+        @Override
+        public int getMaxSockets() {
+            return ForgeConfig.battletowers.maxSockets;
+        }
+    },
     RECCOMPLEX {
         @Override
         public float getChance() {

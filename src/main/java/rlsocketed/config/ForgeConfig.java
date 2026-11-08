@@ -116,6 +116,21 @@ public class ForgeConfig {
         public int maxSockets = 4;
     }
 
+    @Config.Name("Battle Towers")
+    public static BattleTowersConfig battletowers = new BattleTowersConfig();
+
+    public static class BattleTowersConfig {
+        @Config.Comment("Base chance for Battle Tower chest loot to attempt to roll with sockets")
+        @Config.Name("Socket Chance")
+        @Config.RangeDouble(min = 0, max = 1)
+        public float chance = 0.2F;
+
+        @Config.Comment("How many sockets Battle Tower chest loot can roll at maximum")
+        @Config.Name("Max Sockets")
+        @Config.RangeInt(min = 0)
+        public int maxSockets = 4;
+    }
+
     @Config.Name("Recurrent Complex")
     public static ReccomplexConfig reccomplex = new ReccomplexConfig();
 
