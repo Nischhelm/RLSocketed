@@ -1,5 +1,6 @@
 package rlsocketed;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -40,6 +41,7 @@ public class RLSocketed {
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event) {
         if(Loader.isModLoaded("elenaidodge")) {
+            MinecraftForge.EVENT_BUS.register(DodgeActivator.EventHandler.class);
             SocketedUtil.registerActivator(DodgeActivator.TYPE_NAME, DodgeActivator.class, RLSocketed.MODID);
             SocketedUtil.registerEffectType(DodgeForceEffect.TYPE_NAME, DodgeForceEffect.class, RLSocketed.MODID);
         }

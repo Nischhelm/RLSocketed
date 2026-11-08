@@ -3,7 +3,6 @@ package rlsocketed.activator;
 import com.elenai.elenaidodge.api.DodgeEvent;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -47,7 +46,6 @@ public class DodgeActivator extends GenericActivator {
             effect.affectTargets(callback, player, player);
     }
 
-    @Mod.EventBusSubscriber
     public static class EventHandler {
 
         /**
