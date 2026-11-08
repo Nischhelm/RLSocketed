@@ -1,11 +1,10 @@
 package rlsocketed.mixin.reccomplex;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import ivorius.reccomplex.world.gen.feature.StructureGenerator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rlsocketed.compat.ReccomplexCompat;
 
 import javax.annotation.Nullable;
@@ -14,13 +13,15 @@ import javax.annotation.Nullable;
 public abstract class StructureGeneratorMixin {
     @Shadow(remap = false) @Nullable public abstract String structureID();
 
-    @Inject(method = "generate", at = @At("HEAD"), remap = false)
-    private void rlsocketed_saveCurrentStructure(CallbackInfoReturnable<StructureGenerator.GenerationResult> cir){
+    @WrapMethod(method = "generate", remap = false)
+    private StructureGenerator.GenerationResult rlsocketed_trackCurrentStructure(Operation<StructureGenerator.GenerationResult> original) {
+        String previous = ReccomplexCompat.currStructure;
         ReccomplexCompat.currStructure = this.structureID();
-    }
-
-    @Inject(method = "generate", at = @At("TAIL"), remap = false)
-    private void rlsocketed_clearCurrentStructure(CallbackInfoReturnable<StructureGenerator.GenerationResult> cir){
-        ReccomplexCompat.currStructure = null;
+        try {
+            return original.call();
+        } finally {
+            // Make sure this gets set back for nested structs and crashes during gen
+            ReccomplexCompat.currStructure = previous;
+        }
     }
 }
