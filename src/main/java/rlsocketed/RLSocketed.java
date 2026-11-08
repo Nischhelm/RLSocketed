@@ -19,6 +19,7 @@ import socketed.api.util.SocketedUtil;
         name = RLSocketed.MODNAME,
         version = RLSocketed.VERSION,
         dependencies = "required-after:socketed;" +
+                       "after:socketedstandardexpansion;" +
                        "required-after:fermiumbooter;"
 )
 public class RLSocketed {

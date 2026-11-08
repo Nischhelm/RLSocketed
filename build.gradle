@@ -68,8 +68,10 @@ dependencies {
     implementation "io.github.llamalad7:mixinextras-common:${mixin_extras_version}"
     annotationProcessor "io.github.llamalad7:mixinextras-common:${mixin_extras_version}"
 
-    implementation fg.deobf("libs:FermiumBooter:1.5.0-indev") // indev
-//    implementation fg.deobf("curse.maven:fermiumbooter-${fermiumbooter_version}")
+    implementation fg.deobf("curse.maven:fermiumbooter-${fermiumbooter_version}")
+    implementation fg.deobf("curse.maven:socketed-1319911:9500391")
+    implementation fg.deobf("curse.maven:socketedstandardexpansion-1790205:9500397")
+
     implementation fg.deobf("curse.maven:elenai-dodge-${elenaidodge_version}")
     implementation fg.deobf("curse.maven:simpledifficulty-${simpledifficulty_version}")
     implementation fg.deobf("curse.maven:lycanitesmobs-${lycanites_version}")
@@ -78,7 +80,6 @@ dependencies {
     implementation fg.deobf("curse.maven:dldungeons-74246:7931984")
     implementation fg.deobf("curse.maven:fnars-roguelike-dungeons-373157:5688058")
     implementation fg.deobf("curse.maven:recurrent-complex-223150:5615733")
-    implementation fg.deobf("libs:socketed:indev") // indev
 }
 
 mixin {
