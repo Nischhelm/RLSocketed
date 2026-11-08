@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import rlsocketed.RLSocketed;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -122,7 +121,7 @@ public class ForgeConfig {
 
     public static class ReccomplexConfig {
         @Config.Comment({
-                "Base chance for Recurrent Ccomplex loot to attempt to roll with sockets",
+                "Base chance for Recurrent Complex loot to attempt to roll with sockets",
                 "Default value, can be overwritten by structure and loot table"
         })
         @Config.Name("Default Socket Chance")
@@ -130,7 +129,7 @@ public class ForgeConfig {
         public float chance = 0.2F;
 
         @Config.Comment({
-                "How many sockets Recurrent Ccomplex loot can roll at maximum",
+                "How many sockets Recurrent Complex loot can roll at maximum",
                 "Default value, can be overwritten by structure and loot table"
         })
         @Config.Name("Default Max Sockets")
@@ -165,27 +164,27 @@ public class ForgeConfig {
             maxSocketsByStructure = new HashMap<>();
             maxSocketsByLootTable = new HashMap<>();
 
-            Arrays.stream(ForgeConfig.reccomplex.byStructureName)
-                    .map(line -> line.split(","))
-                    .filter(arr -> arr.length == 3)
-                    .forEach(arr -> {
-                        String name = arr[0].trim();
-                        float chance = Float.parseFloat(arr[1].trim());
-                        int maxSockets = Integer.parseInt(arr[2].trim());
-                        chancesByStructure.put(name, chance);
-                        maxSocketsByStructure.put(name, maxSockets);
-                    });
+            parseOverrides(ForgeConfig.reccomplex.byStructureName, chancesByStructure, maxSocketsByStructure);
+            parseOverrides(ForgeConfig.reccomplex.byLootTableName, chancesByLootTable, maxSocketsByLootTable);
+        }
 
-            Arrays.stream(ForgeConfig.reccomplex.byLootTableName)
-                    .map(line -> line.split(","))
-                    .filter(arr -> arr.length == 3)
-                    .forEach(arr -> {
-                        String name = arr[0].trim();
-                        float chance = Float.parseFloat(arr[1].trim());
-                        int maxSockets = Integer.parseInt(arr[2].trim());
-                        chancesByLootTable.put(name, chance);
-                        maxSocketsByLootTable.put(name, maxSockets);
-                    });
+        private static void parseOverrides(String[] lines, Map<String, Float> chances, Map<String, Integer> maxSockets) {
+            for(String line : lines) {
+                String[] arr = line.split(",");
+                if(arr.length != 3) {
+                    RLSocketed.LOGGER.warn("Invalid Recurrent Complex socket override \"{}\", expected pattern: name, chance, max sockets", line);
+                    continue;
+                }
+                try {
+                    String name = arr[0].trim();
+                    float chance = Float.parseFloat(arr[1].trim());
+                    int max = Integer.parseInt(arr[2].trim());
+                    chances.put(name, chance);
+                    maxSockets.put(name, max);
+                } catch(NumberFormatException e) {
+                    RLSocketed.LOGGER.warn("Invalid Recurrent Complex socket override \"{}\", could not parse chance or max sockets", line);
+                }
+            }
         }
     }
 
